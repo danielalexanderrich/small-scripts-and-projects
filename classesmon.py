@@ -5,6 +5,8 @@ Created on Wed Jul  1 14:54:16 2020
 @author: dan
 """
 
+party = []
+
 class Pokemon:
     def __init__(self,
                  name = '', 
@@ -63,16 +65,58 @@ charmander.typing()
 
 
 def Attack(pokemon):
-    ### shows moves, checks type bonus, calculates damage
+    damage = 0
+    select = input("attacks: {}, {} \n".format(pokemon.moveset[0], 
+                   pokemon.moveset[1]))
     
-def Damage(pokemon):
-    ### checks if resists, calculates damage, returns/updates hp
+    if select == "vinewhip" and pokemon.pType == "grass":
+        print("selected vine whip")
+        damage = pokemon.attack * 2
     
-def Battle(pokemon, enemy):
+    elif select is "ember" and pokemon.pType == "fire":
+        print("selected ember")
+        damage = pokemon.attack * 2
+    
+    elif select is "water gun" and pokemon.pType == "water":
+        print("selected water gun")
+        damage = pokemon.attack * 2
+    else:
+        print("selected tackle")
+        damage = pokemon.attack
+        
+    return damage, select
+
+def Damage(pokemon, damage, select):
+     typing = pokemon.pType
+     
+     if select == 'vine whip' and typing == 'grass':
+         damage = damage * .75
+     elif select == 'vine whip' and typing == 'water':
+         damage = damage * 1.5
+         
+     elif select == 'water gun' and typing == 'water':
+         damage = damage * .75
+     elif select == 'water gun' and typing == 'fire':
+         damage = damage * 1.5
+         
+     elif select == 'ember' and typing == 'fire':
+         damage = damage * .75
+     elif select == 'ember' and typing == 'grass':
+         damage = damage * 1.5
+         
+     elif select == 'tackle':
+         damage = damage
+    
+    return damage
+    
+#def Battle(pokemon, enemy):
     ### maybe calls another function Turn(pokemon), calls attack and damage
     ### if hp <= 0 at end of round, battle is over and winner is declared
 
+#choice = input("Choose a pokemon: Bulbasaur, Charmander, or Squirtle:\n").lower()
+#party.append(choice)
 
+#print("You chose {}".format(party[0]))
 
 
 
